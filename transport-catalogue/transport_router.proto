@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package tc_serialize;
+
+import "graph.proto";
+
+message RouteSettings {
+	int32 bus_wait_time = 1;
+	double bus_velocity = 2;
+}
+
+message GraphVertex {
+	uint32 stop_id = 1;
+	uint32 vertex_id = 2;
+}
+
+message TravelProps {
+	uint32 from_id = 1;
+	uint32 to_id = 2;
+	uint32 route = 3;
+	Weight travel_duration = 4;
+}
+
+message TransportRouter {
+	RouteSettings route_settings = 1;
+	repeated GraphVertex graph_vertexes = 2;
+	repeated TravelProps graph_edges = 3;
+	Graph graph = 4;
+	Router router = 5;
+}

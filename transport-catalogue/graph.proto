@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package tc_serialize;
+
+message Weight {
+	int32 stops_number = 1;
+	double waiting_time = 2;
+	double travel_time = 3;
+}
+
+message Edge {
+	uint32 from = 1;
+	uint32 to = 2;
+	Weight weight = 3;
+}
+
+message IncidenceList {
+	repeated uint32 lists = 1;
+}
+
+message Graph {
+	repeated Edge edges = 1;
+	repeated IncidenceList incidence_lists = 2;
+}
+
+message RouteInternalData {
+	bool empty = 1;
+	Weight rid_weight = 2;
+	oneof prev_edge {
+		uint32 edge_prev = 3;
+	}
+}
+
+message RoutesInternalData {
+	repeated RouteInternalData route_internal_data = 1;
+}
+
+message Router {
+	repeated RoutesInternalData routes_internal_data = 1;
+}
