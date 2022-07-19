@@ -6,10 +6,14 @@ import "map_renderer.proto";
 import "transport_router.proto";
 
 message TransportCatalogue {
+	Catalogue catalogue = 1;
+	RenderSettings render_settings = 2;
+	TransportRouter transport_router = 3;
+}
+
+message Catalogue {
 	repeated Stop stops = 1;
 	repeated Bus buses = 2;
-	RenderSettings render_settings = 3;
-	TransportRouter transport_router = 4;
 }
 
 message Coordinates {

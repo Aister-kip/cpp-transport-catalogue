@@ -30,7 +30,9 @@ namespace proto_serialize {
 		RouterPtr tr_ptr_;
 		tc_serialize::TransportCatalogue proto_catalogue_;
 
-		//void ProcessColor(const svg::Color& color) const;
+		void ProcessColor(tc_serialize::Color& proto_color, const svg::Color& color);
+		tc_serialize::Graph ProcessGraph();
+		tc_serialize::Router ProcessRouter();
 	};
 
 	class Deserialize {
@@ -51,5 +53,9 @@ namespace proto_serialize {
 		MapRenderPtr mp_ptr_;
 		RouterPtr tr_ptr_;
 		tc_serialize::TransportCatalogue proto_catalogue_;
+
+		svg::Color ProcessColor(const tc_serialize::Color& proto_color) const;
+		std::unique_ptr<graph::DirectedWeightedGraph<transport_router::TravelDuration>> ProcessGraph();
+		std::unique_ptr<graph::Router<transport_router::TravelDuration>> ProcessRouter(graph::DirectedWeightedGraph<transport_router::TravelDuration>& graph);
 	};
 }
